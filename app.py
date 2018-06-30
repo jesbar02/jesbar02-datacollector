@@ -57,7 +57,6 @@ def success():
         email = request.form["email_name"]
         height = request.form["height_name"]
         is_valid = validate_email(request.form["email_name"], verify=True)
-        print(is_valid)
         if is_valid:
                 if db.session.query(Data).filter(Data.email_ == email).count() == 0:
                     data = Data(email, height)
