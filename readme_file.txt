@@ -287,3 +287,11 @@ accesing the database from Heroku to see commits
     Type "help" for help.
 
     jesbar02-datacollector::DATABASE=>
+
+============
+
+There is an issue with present version of the app and is that no matter if the email exist or not, the new data is write into the database and the email is sent. The purpose with this improving is that a new code is add it so
+a verification is done before the mail is send it. For this, two new modules were installed :
+
+    pip install validate_email
+    pip3 install py3dns
