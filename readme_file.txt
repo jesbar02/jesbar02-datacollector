@@ -256,6 +256,14 @@ This time all went successful:
     To https://git.heroku.com/jesbar02-datacollector.git
     * [new branch]      master -> master
 
+Adding code to Git account: jesbar02
+
+    (virtual) jesbar02@ubuntutesting:~/python_course/python_mega_course/beyond_basics/pp/flask_and_databases/Demo$ git remote add jesbar02 https://github.com/jesbar02/jesbar02-datacollector
+    (virtual) jesbar02@ubuntutesting:~/python_course/python_mega_course/beyond_basics/pp/flask_and_databases/Demo$ git remote -v
+    heroku	https://git.heroku.com/jesbar02-datacollector.git (fetch)
+    heroku	https://git.heroku.com/jesbar02-datacollector.git (push)
+    jesbar02	https://github.com/jesbar02/jesbar02-datacollector (fetch)
+    jesbar02	https://github.com/jesbar02/jesbar02-datacollector (push)
 
 As the database in heroku is empty (No tables), we need to create it manually using for this the heroku command lines
 
@@ -270,7 +278,7 @@ As the database in heroku is empty (No tables), we need to create it manually us
     >>> db.create_all() ---->
     >>> exit
 
-accesing the database from Heroku to see commits 
+accesing the database from Heroku to see commits
 
     (virtual) jesbar02@ubuntutesting:~/python_course/python_mega_course/beyond_basics/pp/flask_and_databases/Demo$ heroku pg:psql postgresql-elliptical-60632 --app jesbar02-datacollector
     --> Connecting to postgresql-elliptical-60632
