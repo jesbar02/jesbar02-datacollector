@@ -30,7 +30,7 @@ from sqlalchemy.sql import func
 from validate_email import validate_email
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres123@localhost/height_collector' # ----> if runinng locally in ubuntutesting
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres123@localhost/height_collector' # ----> if runinng locally in test server
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://bjpnwsnntybnbt:2ce93058d0a497e4ab418f0adfdd09d48a523a9bf69f215e995b2818bd0a5a0f@ec2-107-21-224-61.compute-1.amazonaws.com:5432/d57d6u704adh38?sslmode=require'
 db = SQLAlchemy(app)
 
@@ -56,10 +56,11 @@ def success():
     if request.method == 'POST':
         email = request.form["email_name"]
         height = request.form["height_name"]
-        is_valid = validate_email(request.form["email_name"], check_mx=True)
+        is_valid = validate_email(request.form["email_name"], verify=True)
+        print(is_valid)
         if is_valid:
                 if db.session.query(Data).filter(Data.email_ == email).count() == 0:
-                    data=Data(email, height)
+                    data = Data(email, height)
                     db.session.add(data)
                     db.session.commit()
                     average_height=db.session.query(func.avg(Data.height_)).scalar()
@@ -73,5 +74,5 @@ def success():
 
 if __name__ == '__main__':
     app.debug = True
-    # app.run(host='0.0.0.0', port=5000) # ----> if runinng locally in ubuntutesting
+    # app.run(host='0.0.0.0', port=5000) # ----> if runinng locally in test server
     app.run()
